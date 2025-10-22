@@ -1,2 +1,6 @@
 backend/venv/
 backend/venv/
+*.pt
+*.pkl
+*.dylib
+*.bin
