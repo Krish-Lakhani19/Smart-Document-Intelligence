@@ -139,7 +139,7 @@ Python 3.8+  •  Node.js 16+  •  Git
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/document-intelligence-platform.git
+git clone [https://github.com/yourusername/document-intelligence-platform.git](https://github.com/Krish-Lakhani19/Smart-Document-Intelligence)
 cd document-intelligence-platform
 
 # Backend setup
@@ -433,9 +433,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-- 📧 **Email:** your.email@example.com
-- 🐛 **Issues:** [GitHub Issues](https://github.com/yourusername/document-intelligence-platform/issues)
-- 💬 **Discussions:** [GitHub Discussions](https://github.com/yourusername/document-intelligence-platform/discussions)
+- 📧 **Email:** krishlakhani46767@gmail.com
+- 🐛 **Issues:** [GitHub Issues](https://github.com/Krish-Lakhani19/Smart-Document-Intelligence/issues)
 
 ---
 
@@ -445,6 +444,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ⭐ Star this repo if you find it useful!
 
-[Report Bug](https://github.com/yourusername/document-intelligence-platform/issues) • [Request Feature](https://github.com/yourusername/document-intelligence-platform/issues)
+[Report Bug](https://github.com/Krish-Lakhani19/Smart-Document-Intelligence/issues) • [Request Feature](https://github.com/Krish-Lakhani19/Smart-Document-Intelligence/issues)
 
 </div>
