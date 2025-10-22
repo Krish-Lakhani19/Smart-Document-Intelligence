@@ -139,7 +139,7 @@ Python 3.8+  •  Node.js 16+  •  Git
 
 ```bash
 # Clone repository
-git clone [https://github.com/yourusername/document-intelligence-platform.git](https://github.com/Krish-Lakhani19/Smart-Document-Intelligence)
+git clone https://github.com/Krish-Lakhani19/Smart-Document-Intelligence
 cd document-intelligence-platform
 
 # Backend setup
