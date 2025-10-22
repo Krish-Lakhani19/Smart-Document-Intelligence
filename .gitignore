@@ -4,3 +4,8 @@ backend/venv/
 *.pkl
 *.dylib
 *.bin
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
