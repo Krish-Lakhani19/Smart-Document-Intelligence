@@ -13,3 +13,6 @@ __pycache__/
 .env
 venv/
 backend/venv/
+.env
+venv/
+backend/venv/
