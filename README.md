@@ -9,7 +9,7 @@
 [![React](https://img.shields.io/badge/React-18+-61DAFB.svg)](https://reactjs.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-[Features](#features) • [Demo](#demo) • [Installation](#installation) • [Documentation](#documentation) • [API](#api-reference)
+[Features](#features) • [Demo](#demo) • [Installation](#installation) • [Documentation](https://krish-lakhani19.github.io/Smart-Document-Intelligence/) • [API](#api-reference)
 
 </div>
 
