@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Intelligence Platform - Technical Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 80px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .header .subtitle {
+            font-size: 1.3em;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .header .version {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            font-size: 0.9em;
+            backdrop-filter: blur(10px);
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 0;
+            background: #f8f9fa;
+            border-right: 1px solid #e0e0e0;
+            padding: 40px 30px;
+            float: left;
+            width: 280px;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar h3 {
+            color: #667eea;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar a {
+            color: #555;
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+        }
+
+        .sidebar a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .content {
+            margin-left: 280px;
+            padding: 60px 80px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+            scroll-margin-top: 20px;
+        }
+
+        .section h2 {
+            font-size: 2.2em;
+            color: #2d3748;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            font-weight: 700;
+        }
+
+        .section h3 {
+            font-size: 1.6em;
+            color: #4a5568;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .section h4 {
+            font-size: 1.2em;
+            color: #667eea;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 18px;
+            font-size: 1.05em;
+            color: #4a5568;
+        }
+
+        .info-box {
+            background: #f0f7ff;
+            border-left: 4px solid #667eea;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 6px;
+        }
+
+        .info-box.warning {
+            background: #fff4e6;
+            border-left-color: #f59e0b;
+        }
+
+        .info-box.success {
+            background: #f0fdf4;
+            border-left-color: #10b981;
+        }
+
+        .info-box.error {
+            background: #fef2f2;
+            border-left-color: #ef4444;
+        }
+
+        .info-box h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        code {
+            background: #2d3748;
+            color: #68d391;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 25px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.6;
+            border: 1px solid #4a5568;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .badge.primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .badge.secondary {
+            background: #e0e7ff;
+            color: #667eea;
+        }
+
+        .badge.success {
+            background: #d1fae5;
+            color: #047857;
+        }
+
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .tech-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .tech-card h4 {
+            color: white;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .tech-card p {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.95em;
+            margin: 0;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .feature-list li {
+            padding: 12px 0;
+            padding-left: 35px;
+            position: relative;
+            font-size: 1.05em;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.95em;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead tr {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        th, td {
+            padding: 15px 20px;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #e0e0e0;
+            transition: background 0.3s ease;
+        }
+
+        tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .command-box {
+            background: #1a202c;
+            color: #68d391;
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            position: relative;
+        }
+
+        .command-box:before {
+            content: "$";
+            color: #667eea;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .architecture-diagram {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .arch-box {
+            display: inline-block;
+            background: white;
+            padding: 20px 30px;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 2px solid #667eea;
+        }
+
+        .arrow {
+            display: inline-block;
+            color: #667eea;
+            font-size: 2em;
+            margin: 0 10px;
+        }
+
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 40px 80px;
+            text-align: center;
+        }
+
+        .footer p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 10px;
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .toc-number {
+            color: #667eea;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        @media (max-width: 968px) {
+            .sidebar {
+                display: none;
+            }
+            
+            .content {
+                margin-left: 0;
+                padding: 40px 30px;
+            }
+
+            .header {
+                padding: 40px 30px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Document Intelligence Platform</h1>
+            <p class="subtitle">Technical Documentation & Implementation Guide</p>
+            <span class="version">Version 1.0.0 | October 2024</span>
+        </div>
+
+        <div class="sidebar">
+            <h3>Table of Contents</h3>
+            <ul>
+                <li><a href="#overview"><span class="toc-number">1.</span>Overview</a></li>
+                <li><a href="#architecture"><span class="toc-number">2.</span>Architecture</a></li>
+                <li><a href="#tech-stack"><span class="toc-number">3.</span>Tech Stack</a></li>
+                <li><a href="#features"><span class="toc-number">4.</span>Features</a></li>
+                <li><a href="#installation"><span class="toc-number">5.</span>Installation</a></li>
+                <li><a href="#api"><span class="toc-number">6.</span>API Reference</a></li>
+                <li><a href="#deployment"><span class="toc-number">7.</span>Deployment</a></li>
+                <li><a href="#troubleshooting"><span class="toc-number">8.</span>Troubleshooting</a></li>
+            </ul>
+
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#getting-started">Getting Started</a></li>
+                <li><a href="#environment">Environment Setup</a></li>
+                <li><a href="#github">GitHub Setup</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <!-- Overview Section -->
+            <section id="overview" class="section">
+                <h2>1. Overview</h2>
+                
+                <p>The <strong>Document Intelligence Platform</strong> is a cutting-edge, production-ready application that leverages advanced AI and machine learning technologies to transform how users interact with documents. Built with modern web technologies and powered by Large Language Models (LLMs), this platform enables intelligent document analysis, semantic search, and natural language question-answering.</p>
+
+                <div class="info-box success">
+                    <h4>🎯 Problem Statement</h4>
+                    <p>Organizations and individuals spend countless hours manually searching through documents to find specific information. This platform automates this process using AI, reducing search time from hours to seconds while providing accurate, contextual answers.</p>
+                </div>
+
+                <h3>Key Capabilities</h3>
+                <ul class="feature-list">
+                    <li><strong>Intelligent Document Processing:</strong> Automated extraction and indexing of document content</li>
+                    <li><strong>Semantic Search:</strong> Vector-based similarity search for context-aware results</li>
+                    <li><strong>AI-Powered Q&A:</strong> Natural language question answering using RAG architecture</li>
+                    <li><strong>Real-time Analytics:</strong> Comprehensive document statistics and insights</li>
+                    <li><strong>Multi-format Support:</strong> PDF, TXT, and more document formats</li>
+                </ul>
+
+                <h3>Use Cases</h3>
+                <div class="tech-stack">
+                    <div class="tech-card">
+                        <h4>🏥 Healthcare</h4>
+                        <p>Medical record analysis, research paper review, and clinical documentation</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4>⚖️ Legal</h4>
+                        <p>Contract analysis, case law research, and legal document review</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4>🎓 Education</h4>
+                        <p>Study material analysis, research assistance, and academic writing</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4>💼 Business</h4>
+                        <p>Report analysis, knowledge management, and compliance documentation</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Architecture Section -->
+            <section id="architecture" class="section">
+                <h2>2. System Architecture</h2>
+
+                <p>The platform follows a modern, scalable microservices architecture with clear separation of concerns between frontend, backend, and data storage layers.</p>
+
+                <div class="architecture-diagram">
+                    <div class="arch-box">
+                        <strong>React Frontend</strong><br>
+                        <small>User Interface</small>
+                    </div>
+                    <span class="arrow">→</span>
+                    <div class="arch-box">
+                        <strong>FastAPI Backend</strong><br>
+                        <small>REST API</small>
+                    </div>
+                    <span class="arrow">→</span>
+                    <div class="arch-box">
+                        <strong>LangChain</strong><br>
+                        <small>LLM Orchestration</small>
+                    </div>
+                    <span class="arrow">→</span>
+                    <div class="arch-box">
+                        <strong>ChromaDB</strong><br>
+                        <small>Vector Store</small>
+                    </div>
+                </div>
+
+                <h3>Architecture Components</h3>
+
+                <h4>Frontend Layer</h4>
+                <p>Built with React and TailwindCSS, the frontend provides an intuitive, responsive interface for document management and interaction. Key features include:</p>
+                <ul class="feature-list">
+                    <li>Single Page Application (SPA) architecture</li>
+                    <li>Real-time document upload and processing feedback</li>
+                    <li>Interactive chat interface for Q&A</li>
+                    <li>Document library with management capabilities</li>
+                </ul>
+
+                <h4>Backend Layer</h4>
+                <p>The FastAPI backend handles all business logic, document processing, and AI orchestration:</p>
+                <ul class="feature-list">
+                    <li>RESTful API design with automatic documentation</li>
+                    <li>Asynchronous request handling for scalability</li>
+                    <li>Document parsing and text extraction</li>
+                    <li>Vector embedding generation and storage</li>
+                </ul>
+
+                <h4>AI/ML Layer</h4>
+                <p>Powered by LangChain and OpenAI, this layer provides intelligent document understanding:</p>
+                <ul class="feature-list">
+                    <li>RAG (Retrieval Augmented Generation) pipeline</li>
+                    <li>Semantic similarity search</li>
+                    <li>Context-aware answer generation</li>
+                    <li>Document chunking and embedding</li>
+                </ul>
+
+                <div class="info-box">
+                    <h4>📊 Data Flow</h4>
+                    <p><strong>Upload:</strong> Document → Text Extraction → Chunking → Embedding → Vector Storage</p>
+                    <p><strong>Query:</strong> Question → Embedding → Similarity Search → Context Retrieval → LLM → Answer</p>
+                </div>
+            </section>
+
+            <!-- Tech Stack Section -->
+            <section id="tech-stack" class="section">
+                <h2>3. Technology Stack</h2>
+
+                <h3>Backend Technologies</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Technology</th>
+                            <th>Version</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Python</strong></td>
+                            <td>3.8+</td>
+                            <td>Core programming language</td>
+                        </tr>
+                        <tr>
+                            <td><strong>FastAPI</strong></td>
+                            <td>0.104+</td>
+                            <td>High-performance web framework</td>
+                        </tr>
+                        <tr>
+                            <td><strong>LangChain</strong></td>
+                            <td>0.1.0+</td>
+                            <td>LLM application framework</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ChromaDB</strong></td>
+                            <td>0.4.18+</td>
+                            <td>Vector database for embeddings</td>
+                        </tr>
+                        <tr>
+                            <td><strong>OpenAI API</strong></td>
+                            <td>1.6+</td>
+                            <td>GPT-3.5/4 for Q&A</td>
+                        </tr>
+                        <tr>
+                            <td><strong>HuggingFace Transformers</strong></td>
+                            <td>2.2+</td>
+                            <td>Text embeddings (free alternative)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Frontend Technologies</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Technology</th>
+                            <th>Version</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>React</strong></td>
+                            <td>18+</td>
+                            <td>UI framework</td>
+                        </tr>
+                        <tr>
+                            <td><strong>TailwindCSS</strong></td>
+                            <td>3+</td>
+                            <td>Utility-first CSS framework</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Axios</strong></td>
+                            <td>1+</td>
+                            <td>HTTP client for API calls</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Lucide React</strong></td>
+                            <td>Latest</td>
+                            <td>Icon library</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-box warning">
+                    <h4>⚠️ API Key Required</h4>
+                    <p>An OpenAI API key is required for production use. Alternatively, you can use local models with Ollama for cost-free operation.</p>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section id="features" class="section">
+                <h2>4. Core Features</h2>
+
+                <h3>Document Management</h3>
+                <span class="badge primary">File Upload</span>
+                <span class="badge primary">Multi-format Support</span>
+                <span class="badge primary">Document Library</span>
+
+                <p>Comprehensive document lifecycle management with support for multiple file formats, automated processing, and organized storage.</p>
+
+                <h3>AI-Powered Analysis</h3>
+                <span class="badge success">Natural Language Q&A</span>
+                <span class="badge success">Semantic Search</span>
+                <span class="badge success">Context Extraction</span>
+
+                <p>Advanced AI capabilities leveraging state-of-the-art language models to understand and answer questions about your documents with high accuracy.</p>
+
+                <h3>Analytics & Insights</h3>
+                <span class="badge secondary">Word Frequency</span>
+                <span class="badge secondary">Reading Time</span>
+                <span class="badge secondary">Sentiment Analysis</span>
+
+                <p>Detailed statistical analysis providing insights into document content, structure, and sentiment.</p>
+
+                <div class="info-box success">
+                    <h4>✨ Key Differentiators</h4>
+                    <ul class="feature-list">
+                        <li>Production-ready codebase with error handling</li>
+                        <li>Scalable architecture supporting multiple users</li>
+                        <li>Real-time processing with progress indicators</li>
+                        <li>Source citation for transparency</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Installation Section -->
+            <section id="installation" class="section">
+                <h2>5. Installation Guide</h2>
+
+                <h3 id="getting-started">Prerequisites</h3>
+                <p>Before beginning installation, ensure you have the following installed on your system:</p>
+                <ul class="feature-list">
+                    <li>Python 3.8 or higher</li>
+                    <li>Node.js 16+ and npm</li>
+                    <li>Git version control</li>
+                    <li>VS Code or preferred IDE</li>
+                </ul>
+
+                <h3>Step 1: Clone Repository</h3>
+                <div class="command-box">
+                    git clone https://github.com/YOUR-USERNAME/document-intelligence-platform.git<br>
+                    cd document-intelligence-platform
+                </div>
+
+                <h3>Step 2: Backend Setup</h3>
+                <div class="command-box">
+                    cd backend<br>
+                    python -m venv venv<br>
+                    source venv/bin/activate  # Windows: venv\Scripts\activate<br>
+                    pip install -r requirements.txt
+                </div>
+
+                <h3 id="environment">Step 3: Environment Configuration</h3>
+                <p>Create a <code>.env</code> file in the backend directory:</p>
+                <pre><code>OPENAI_API_KEY=your_api_key_here
+DATABASE_URL=sqlite:///./documents.db
+UPLOAD_DIR=uploads
+VECTOR_DB_DIR=vector_db</code></pre>
+
+                <h3>Step 4: Frontend Setup</h3>
+                <div class="command-box">
+                    cd ../frontend<br>
+                    npm install<br>
+                    npm install axios lucide-react<br>
+                    npm install -D tailwindcss postcss autoprefixer<br>
+                    npx tailwindcss init -p
+                </div>
+
+                <h3>Step 5: Run Application</h3>
+                <p><strong>Terminal 1 (Backend):</strong></p>
+                <div class="command-box">
+                    cd backend<br>
+                    uvicorn main:app --reload
+                </div>
+
+                <p><strong>Terminal 2 (Frontend):</strong></p>
+                <div class="command-box">
+                    cd frontend<br>
+                    npm start
+                </div>
+
+                <div class="info-box success">
+                    <h4>✅ Verification</h4>
+                    <p><strong>Backend:</strong> http://localhost:8000/docs</p>
+                    <p><strong>Frontend:</strong> http://localhost:3000</p>
+                </div>
+            </section>
+
+            <!-- API Reference Section -->
+            <section id="api" class="section">
+                <h2>6. API Reference</h2>
+
+                <h3>Base URL</h3>
+                <pre><code>http://localhost:8000/api/v1</code></pre>
+
+                <h3>Endpoints</h3>
+
+                <h4>POST /upload</h4>
+                <p>Upload and process a new document.</p>
+                <pre><code><strong>Request:</strong>
+Content-Type: multipart/form-data
+Body: {
+  "file": [binary file data]
+}
+
+<strong>Response:</strong> 200 OK
+{
+  "id": "uuid",
+  "name": "document.pdf",
+  "upload_date": "2024-10-22T10:30:00",
+  "word_count": 5000,
+  "size": "124.5 KB",
+  "status": "processed"
+}</code></pre>
+
+                <h4>POST /query</h4>
+                <p>Ask a question about a document.</p>
+                <pre><code><strong>Request:</strong>
+{
+  "document_id": "uuid",
+  "query": "What is the main topic?"
+}
+
+<strong>Response:</strong> 200 OK
+{
+  "answer": "The document discusses...",
+  "source_documents": ["context excerpt 1", "context excerpt 2"],
+  "confidence": 0.85
+}</code></pre>
+
+                <h4>GET /documents</h4>
+                <p>Retrieve list of all uploaded documents.</p>
+                <pre><code><strong>Response:</strong> 200 OK
+[
+  {
+    "id": "uuid",
+    "name": "document.pdf",
+    "upload_date": "2024-10-22T10:30:00",
+    "word_count": 5000,
+    "size": "124.5 KB"
+  }
+]</code></pre>
+
+                <h4>GET /analyze/{document_id}</h4>
+                <p>Get detailed analytics for a document.</p>
+                <pre><code><strong>Response:</strong> 200 OK
+{
+  "word_count": 5000,
+  "sentence_count": 250,
+  "paragraph_count": 50,
+  "avg_words_per_sentence": 20.0,
+  "top_keywords": [
+    {"word": "intelligence", "count": 45},
+    {"word": "document", "count": 38}
+  ],
+  "reading_time": 25,
+  "sentiment": "Positive"
+}</code></pre>
+
+                <h4>DELETE /documents/{document_id}</h4>
+                <p>Remove a document and its associated data.</p>
+                <pre><code><strong>Response:</strong> 200 OK
+{
+  "message": "Document deleted successfully"
+}</code></pre>
+            </section>
+
+            <!-- Deployment Section -->
+            <section id="deployment" class="section">
+                <h2>7. Deployment</h2>
+
+                <h3>Production Deployment Options</h3>
+
+                <h4>Backend Deployment (Render)</h4>
+                <ol class="feature-list">
+                    <li>Create account on render.com</li>
+                    <li>Connect GitHub repository</li>
+                    <li>Create new Web Service</li>
+                    <li>Configure build command: <code>pip install -r requirements.txt</code></li>
+                    <li>Configure start command: <code>uvicorn main:app --host 0.0.0.0 --port $PORT</code></li>
+                    <li>Add environment variables (OPENAI_API_KEY)</li>
+                    <li>Deploy!</li>
+                </ol>
+
+                <h4>Frontend Deployment (Vercel)</h4>
+                <ol class="feature-list">
+                    <li>Create account on vercel.com</li>
+                    <li>Import GitHub repository</li>
+                    <li>Set root directory to <code>frontend</code></li>
+                    <li>Configure environment variables</li>
+                    <li>Deploy automatically</li>
+                </ol>
+
+                <div class="info-box">
+                    <h4>🔄 Continuous Deployment</h4>
+                    <p>Both Render and Vercel support automatic deployments on git push, enabling seamless CI/CD workflows.</p>
+                </div>
+
+                <h3 id="github">GitHub Repository Setup</h3>
+                <div class="command-box">
+                    git init<br>
+                    git add .<br>
+                    git commit -m "Initial commit"<br>
+                    git remote add origin https://github.com/USERNAME/repo-name.git<br>
+                    git push -u origin main
+                </div>
+            </section>
+
+            <!-- Troubleshooting Section -->
+            <section id="troubleshooting" class="section">
+                <h2>8. Troubleshooting</h2>
+
+                <h3>Common Issues</h3>
+
+                <h4>Module Not Found Error</h4>
+                <div class="info-box error">
+                    <p><strong>Error:</strong> <code>ModuleNotFoundError: No module named 'fastapi'</code></p>
+                    <p><strong>Solution:</strong> Ensure virtual environment is activated and dependencies are installed:</p>
+                    <div class="command-box">
+                        source venv/bin/activate<br>
+                        pip install -r requirements.txt
+                    </div>
+                </div>
+
+                <h4>Port Already in Use</h4>
