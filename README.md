@@ -329,7 +329,7 @@ vercel deploy
 
 ## Documentation
 
-- 📖 **[Full Documentation][(./docs/index.html)](https://krish-lakhani19.github.io/Smart-Document-Intelligence/)** — Comprehensive technical guide
+- 📖 **[Full Documentation](https://krish-lakhani19.github.io/Smart-Document-Intelligence/)** — Comprehensive technical guide
 - 🚀 **[API Reference](http://localhost:8000/docs)** — Interactive API documentation
 - 🔧 **[Setup Guide](./docs/SETUP.md)** — Detailed installation instructions
 - ❓ **[FAQ](./docs/FAQ.md)** — Common questions and solutions
